@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Surprise 🎂</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI',sans-serif;
+    min-height:100vh;
+    background:
+    radial-gradient(circle at top left,#ff77b7 0%,transparent 40%),
+    radial-gradient(circle at bottom right,#8b5cf6 0%,transparent 40%),
+    linear-gradient(135deg,#160b36,#4b145f,#a52d76);
+    color:white;
+    overflow-x:hidden;
+}
+
+.container{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.box{
+    width:100%;
+    max-width:480px;
+    text-align:center;
+    padding:35px 25px;
+    border:1px solid #ffffff50;
+    background:#ffffff18;
+    backdrop-filter:blur(20px);
+    border-radius:28px;
+    box-shadow:0 15px 60px #0005;
+    animation:fade 1s ease;
+}
+
+@keyframes fade{
+    from{opacity:0;transform:translateY(30px);}
+    to{opacity:1;transform:translateY(0);}
+}
+
+h1{
+    font-size:30px;
+    color:#ffe0f0;
+    margin-bottom:15px;
+    text-shadow:0 0 15px #ff69b4;
+}
+
+p{
+    color:#ffe7f5;
+    line-height:1.7;
+}
+
+.emoji{
+    font-size:65px;
+    margin-bottom:15px;
+}
+
+input{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:14px;
+    margin:15px 0;
+    font-size:16px;
+    outline:none;
+    background:#fff;
+    color:#333;
+}
+
+button{
+    border:none;
+    padding:14px 28px;
+    border-radius:30px;
+    background:linear-gradient(90deg,#ff3995,#ff9aaf);
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:15px;
+    box-shadow:0 5px 20px #ff399570;
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.07);
+    box-shadow:0 0 25px #ff8bc5;
+}
+
+.hidden{
+    display:none;
+}
+
+/* CAKE */
+
+.cake{
+    font-size:115px;
+    margin:25px 0;
+    animation:bounce 2s infinite;
+}
+
+@keyframes bounce{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-15px);}
+}
+
+.person{
+    font-size:34px;
+    font-weight:bold;
+    color:#ffdbef;
+    text-shadow:0 0 20px #ff69b4;
+    margin:15px 0;
+    overflow-wrap:anywhere;
+}
+
+.photo{
+    width:200px;
+    height:200px;
+    object-fit:cover;
+    border-radius:50%;
+    border:6px solid white;
+    box-shadow:0 0 30px #ff69b4;
+    margin:20px auto;
+    display:none;
+}
+
+/* CARD */
+
+.birthday-card{
+    background:linear-gradient(145deg,#fff0f7,#ffe0eb);
+    color:#a52d76;
+    padding:30px 20px;
+    border-radius:22px;
+    box-shadow:0 10px 40px #0003;
+}
+
+.birthday-card h2{
+    color:#d63384;
+    font-size:29px;
+    margin-bottom:15px;
+}
+
+.birthday-card p{
+    color:#85345f;
+    margin:13px 0;
+    font-size:16px;
+}
+
+.card-photo{
+    width:170px;
+    height:170px;
+    border-radius:50%;
+    object-fit:cover;
+    border:6px solid white;
+    box-shadow:0 0 20px #ff69b4;
+    margin:15px auto;
+    display:none;
+}
+
+.wishes{
+    font-size:19px!important;
+    font-weight:bold;
+    line-height:1.8!important;
+}
+
+.footer{
+    margin-top:20px;
+    font-size:13px;
+    color:#fff;
+}
+
+/* BALLOONS */
+
+.balloon{
+    position:fixed;
+    bottom:-150px;
+    font-size:45px;
+    animation:float 8s linear infinite;
+    pointer-events:none;
+}
+
+@keyframes float{
+    0%{transform:translateY(0) rotate(-10deg);}
+    100%{transform:translateY(-120vh) rotate(15deg);}
+}
+
+/* CONFETTI */
+
+.confetti{
+    position:fixed;
+    top:-15px;
+    width:10px;
+    height:15px;
+    z-index:100;
+    animation:fall 4s linear forwards;
+    pointer-events:none;
+}
+
+@keyframes fall{
+    to{
+        transform:translateY(110vh) rotate(720deg);
+        opacity:0;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- STEP 1: DATE OF BIRTH -->
+
+<div class="box" id="step1">
+
+    <div class="emoji">🎉🎂</div>
+
+    <h1>Birthday Surprise!</h1>
+
+    <p>A special celebration is waiting for you! ❤️</p>
+
+    <h3 style="margin-top:25px;">🎂 Enter Your Date of Birth</h3>
+
+    <input type="date" id="dob">
+
+    <button onclick="nextStep()">Continue 💖</button>
+
+</div>
+
+
+<!-- STEP 2: NAME -->
+
+<div class="box hidden" id="step2">
+
+    <div class="emoji">💝</div>
+
+    <h1>What Is Your Name?</h1>
+
+    <p>Let's make your birthday unforgettable!</p>
+
+    <input type="text" id="personName"
+    placeholder="Enter Your Name">
+
+    <button onclick="showCake()">Next Surprise 🎁</button>
+
+</div>
+
+
+<!-- STEP 3: BIRTHDAY CAKE -->
+
+<div class="box hidden" id="step3">
+
+    <div style="font-size:30px;">🎊🎊🎊</div>
+
+    <h1>Happy Birthday To</h1>
+
+    <div class="person" id="birthdayName"></div>
+
+    <div class="cake">🎂</div>
+
+    <h2 style="color:#ffd4eb;">Make A Wish! ✨</h2>
+
+    <p>May your life always shine with happiness! ❤️</p>
+
+    <button onclick="openPhoto()">Next Surprise 💌</button>
+
+</div>
+
+
+<!-- STEP 4: UPLOAD PHOTO -->
+
+<div class="box hidden" id="step4">
+
+    <div class="emoji">📸</div>
+
+    <h1>Your Beautiful Photo</h1>
+
+    <p>Upload your favourite photo to make your birthday card special.</p>
+
+    <input type="file" id="photoInput"
+    accept="image/*" onchange="previewPhoto(event)">
+
+    <img id="preview" class="photo" alt="Photo Preview">
+
+    <button onclick="makeCard()">Create My Birthday Card 🎉</button>
+
+</div>
+
+
+<!-- STEP 5: FINAL BIRTHDAY CARD -->
+
+<div class="box hidden" id="step5">
+
+    <div class="birthday-card">
+
+        <h2>🎉 Happy Birthday 🎉</h2>
+
+        <h2 id="cardName"></h2>
+
+        <img id="cardPhoto" class="card-photo" alt="Birthday Photo">
+
+        <div style="font-size:50px;">🎂🎁💐</div>
+
+        <p class="wishes">
+        May your special day be filled with endless
+        happiness, love, laughter and beautiful memories!
+        </p>
+
+        <p>
+        May all your dreams come true and every moment
+        of your life be as beautiful as your smile.
+        </p>
+
+        <p>
+        Wishing you lots of success, good health
+        and unlimited happiness! ❤️
+        </p>
+
+        <h2 style="font-size:23px;">
+        Lots Of Love & Best Wishes! 💖
+        </h2>
+
+        <div style="font-size:30px;">🥳🎈🎊</div>
+
+    </div>
+
+    <button onclick="celebrate()">Celebrate Again 🎊</button>
+
+    <button onclick="window.print()">Print Birthday Card 🖨️</button>
+
+    <div class="footer">Made With ❤️ Just For You</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+let person = "";
+let photoURL = "";
+
+function nextStep(){
+
+    let dob = document.getElementById("dob").value;
+
+    if(!dob){
+        alert("Please enter your Date of Birth!");
+        return;
+    }
+
+    if(new Date(dob) > new Date()){
+        alert("Please enter a valid Date of Birth!");
+        return;
+    }
+
+    document.getElementById("step1").classList.add("hidden");
+    document.getElementById("step2").classList.remove("hidden");
+}
+
+function showCake(){
+
+    person = document.getElementById("personName").value.trim();
+
+    if(person === ""){
+        alert("Please enter your name!");
+        return;
+    }
+
+    document.getElementById("birthdayName").textContent = person;
+
+    document.getElementById("step2").classList.add("hidden");
+    document.getElementById("step3").classList.remove("hidden");
+
+    celebrate();
+}
+
+function openPhoto(){
+
+    document.getElementById("step3").classList.add("hidden");
+    document.getElementById("step4").classList.remove("hidden");
+}
+
+function previewPhoto(event){
+
+    let file = event.target.files[0];
+
+    if(!file) return;
+
+    if(!file.type.startsWith("image/")){
+        alert("Please upload an image!");
+        return;
+    }
+
+    if(file.size > 10 * 1024 * 1024){
+        alert("Please upload an image smaller than 10 MB!");
+        return;
+    }
+
+    if(photoURL){
+        URL.revokeObjectURL(photoURL);
+    }
+
+    photoURL = URL.createObjectURL(file);
+
+    let preview = document.getElementById("preview");
+
+    preview.src = photoURL;
+    preview.style.display = "block";
+}
+
+function makeCard(){
+
+    if(!photoURL){
+        alert("Please upload your photo first!");
+        return;
+    }
+
+    document.getElementById("cardName").textContent =
+    "Dear " + person + " ❤️";
+
+    let cardPhoto = document.getElementById("cardPhoto");
+
+    cardPhoto.src = photoURL;
+    cardPhoto.style.display = "block";
+
+    document.getElementById("step4").classList.add("hidden");
+    document.getElementById("step5").classList.remove("hidden");
+
+    celebrate();
+}
+
+function celebrate(){
+
+    let colors = ["#ff1493","#ffd700","#ffffff","#00e5ff","#a855f7"];
+
+    for(let i=0;i<100;i++){
+
+        let confetti = document.createElement("div");
+
+        confetti.className = "confetti";
+
+        confetti.style.left = Math.random()*100+"vw";
+
+        confetti.style.background =
+        colors[Math.floor(Math.random()*colors.length)];
+
+        confetti.style.animationDuration =
+        (Math.random()*3+2)+"s";
+
+        document.body.appendChild(confetti);
+
+        setTimeout(()=>confetti.remove(),5000);
+    }
+}
+
+/* FLOATING BALLOONS */
+
+function createBalloon(){
+
+    let balloon = document.createElement("div");
+
+    balloon.className = "balloon";
+
+    let emojis = ["🎈","🎈","💖","🎉","🎊"];
+
+    balloon.innerHTML =
+    emojis[Math.floor(Math.random()*emojis.length)];
+
+    balloon.style.left = Math.random()*100+"vw";
+
+    balloon.style.animationDuration =
+    (Math.random()*5+6)+"s";
+
+    document.body.appendChild(balloon);
+
+    setTimeout(()=>balloon.remove(),11000);
+}
+
+setInterval(createBalloon,1200);
+
+</script>
+
+</body>
+</html>
